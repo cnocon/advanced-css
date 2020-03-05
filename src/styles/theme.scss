@@ -1,0 +1,192 @@
+
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 10px;
+}
+
+body {
+  font-size: 1.6rem;
+  box-sizing: inherit;
+  font-family: 'Open Sans', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.25;
+}
+
+h1 {
+  font-size: 8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+h2 {
+  display: inline-block;
+  font-size: 4.25rem;
+  font-family: 'Montserrat', sans-serif;
+  text-transform: lowercase;
+  font-weight: 300;
+  color: $onyx;
+}
+
+h3 {
+  font-size: 3.25rem;
+  font-weight: 500;
+}
+
+h4 {
+  font-size: 2.5rem;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  background-color: rgba($lightest-blue, .5);
+  display: inline-block;
+  padding: .5rem 1rem;
+  border-radius: $border-radius;
+
+  [class$="compiled"] & {
+    background-color: rgba($aqua, .5);
+  }
+
+  [class$="rendered"] & {
+    background-color: $rose;
+  }
+}
+
+h5, h6 {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+p {
+  font-size: 1.8rem;
+}
+
+header {
+  text-align: center;
+}
+
+main {
+  padding: $default-padding;
+}
+
+section {
+  margin: 0 ;
+}
+
+.example {
+  margin-bottom: 12rem;
+
+  &:nth-of-type(odd) {
+    background-color: rgba(237,237,237, .5);
+    margin-left: -7.5%;
+    margin-right: -7.5%;
+    padding: 1rem 7.5%;
+    padding-bottom: 4rem;
+    padding-top: 4rem;
+
+    [class$="rendered"] > div {
+      background-color: #ffffff;
+    }
+  }
+
+  &__header {
+    text-align: center;
+  }
+
+  &__preview {
+    display: grid;
+    grid-gap: 4rem 8rem;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, .5fr);
+    align-items: flex-start;
+
+    &--scss {
+      grid-column-start: 1;
+      grid-column-end: 2;
+      grid-row-start: 1;
+      grid-row-end: 2;
+    }
+
+    &--compiled {
+      grid-column-start: 2;
+      grid-column-end: 3;
+      grid-row-start: 1;
+      grid-row-end: 2;
+    }
+
+    &--rendered {
+      grid-column-start: 1;
+      grid-column-end: 3;
+      grid-row-start: 2;
+      grid-row-end: 3;
+
+      > div {
+        border: $border;
+        border-radius: $border-radius;
+        padding: 3rem;
+      }
+
+      p {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+      }
+    }
+
+    .prettyprint {
+      padding: 5rem;
+      width: auto;
+
+      span {
+        font-size: 2.5rem;
+        line-height: 1.25;
+        font-family: 'Inconsolata', monospace;
+      }
+    }
+
+    h4 {
+      text-align: center;
+    }
+  }
+}
+
+.pro-tip {
+  position: relative;
+  left: 50%;
+  width: 45%;
+  margin-left: 5%;
+
+  p {
+    position: absolute;
+    border-radius: $border-radius;
+    padding: 3rem;
+    text-indent: 10px;
+    margin-top: 0;
+    font-weight: 600;
+    line-height: 1.7;
+
+    &::before {
+      content: "!";
+      font-weight: 800;
+      font-size: 3rem !important;
+      text-indent: 0;
+      display: block;
+      border: 2px solid $onyx;
+      width: 6rem;
+      height: 6rem;
+      line-height: 6rem;
+      border-radius: 50%;
+      text-align: center;
+      margin: 0 auto 1rem;
+      background-color: $yellow;
+    }
+  }
+
+  & ~ div {
+    width: 50%;
+  }
+}

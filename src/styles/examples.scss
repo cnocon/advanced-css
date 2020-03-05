@@ -1,0 +1,172 @@
+/** 1. Prefixing parent selector references **/
+.dark-bg {
+  background-color: $black;
+  padding: 1rem;
+  border-radius: $border-radius;
+}
+
+p {
+  color: $black;
+  margin-left: 1rem;
+  margin-bottom: 3rem;
+
+  .dark-bg & {
+    color: $white;
+    margin-bottom: 2rem;
+  }
+}
+
+/** 2. Variable expansion in selectors **/
+$alertClass: "error";
+
+p.message--#{$alertClass} {
+  color: darken(red, 10%);
+}
+
+/** 3. Regex Selectors **/
+p {
+  &[class^="message"] {
+    border-left: 10px solid $black;
+    padding-left: 1.5rem;
+  }
+
+   &[class$="error"] {
+    border-color: $color-error;
+  }
+
+  &[class$="success"] {
+    border-color: $color-success;
+  }
+}
+
+/** Each **/
+.button {
+  padding: 1rem 2rem;
+  border-radius: $border-radius;
+  font-size: 2rem;
+  margin-right: 3rem;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: $white;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+$buttonConfig: (
+  'save': $color-success,
+  'cancel': $color-danger,
+  'help': $light-blue
+);
+
+@each $pair in $buttonConfig {
+  .button--#{nth($pair, 1)} {
+    background-color: nth($pair, 2);
+
+    &:hover {
+      background-color: lighten(nth($pair, 2), 10%);
+      color: darken(nth($pair, 2), 20%);
+    }
+  }
+}
+
+[class^='center'] {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  border: 1px solid $onyx;
+
+  p {
+    font-size: 1.5rem !important;
+    font-weight: 600 !important;
+    text-align: center;
+    align-self: center;
+    margin-left: 0;
+  }
+}
+// Define vertical, horizontal, or both position
+@mixin absoluteCenter($position) {
+  position: absolute;
+
+  @if $position == 'vertical' {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  @else if $position == 'horizontal' {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  @else if $position == 'both' {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+// Using the mixin
+.parent {
+  position: relative;
+  height: 500px;
+}
+
+$colors: ('rose': $rose, 'yellow': $yellow, 'light-blue': $light-blue, 'aqua': $aqua);
+@each $color in $colors {
+  .bg-#{nth($color, 1)} {
+    background-color: rgba(nth($color, 2), .35);
+  }
+}
+
+.center-both {
+  @include absoluteCenter(both);
+}
+
+.center-horizontal {
+  @include absoluteCenter(horizontal);
+}
+
+.center-vertical {
+  @include absoluteCenter(vertical);
+}
+
+%side-by-side-background {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.has-background-image {
+  background-image: url('https://bit.ly/2PQ6GBs');
+  @extend %side-by-side-background;
+}
+
+.has-background-image {
+  min-height: 300px;
+
+  p {
+    padding: 3rem;
+    width: 90%;
+    margin: auto;
+    transform: translate(0, 30%);
+    background-color: rgba($white, .75);
+  }
+
+}
+
+
+
+@function calculate-rem($size) {
+  $rem-size: $size / 16px;
+  @return #{$rem-size}rem;
+}
+
+@mixin font-size($size) {
+  font-size: calculate-rem($size) !important;
+}
+
+h3 {
+  @include font-size(120px);
+}
