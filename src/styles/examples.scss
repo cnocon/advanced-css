@@ -20,7 +20,7 @@ p {
 $alertClass: "error";
 
 p.message--#{$alertClass} {
-  color: darken(red, 10%);
+  color: rgba($color-danger, 1);
 }
 
 /** 3. Regex Selectors **/
@@ -31,7 +31,7 @@ p {
   }
 
    &[class$="error"] {
-    border-color: $color-error;
+    border-color: $color-danger;
   }
 
   &[class$="success"] {

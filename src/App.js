@@ -9,8 +9,9 @@ const App = () => {
       <header><h1>Advanced CSS</h1></header>
 {/* 1. Prefixing parent selector references */}
 <Example
-  title="Prefixing Parent Selector References"
+  title="The Parent Selector"
   lang="css"
+  proTip="The parent selector, &, is a special selector invented by Sass that’s used in nested selectors to refer to the outer selector. It makes it possible to re-use the outer selector in more complex ways, like adding a pseudo-class or adding a selector before the parent."
   compiledSnippet={`.dark-bg p {
   color: #fff;
 }`}
@@ -31,19 +32,61 @@ const App = () => {
   </div>
 </Example>
 
-{/* 2. Variable expansion in selectors */}
 <Example
-title="Variable expansion in selectors"
-lang="css"
-compiledSnippet={`p.message-error {
-  color: red;
-}`}
-codeSnippet={`$alertClass: "error";
+  title="The Parent Selector: Adding Suffixes"
+  lang="css"
+  proTip="The parent selector, &, is a special selector invented by Sass that’s used in nested selectors to refer to the outer selector. It makes it possible to re-use the outer selector in more complex ways, like adding a pseudo-class or adding a selector before the parent."
+  compiledSnippet={`.accordion {
+  max-width: 600px;
+  margin: 4rem auto;
+  width: 90%;
+  font-family: "Raleway", sans-serif;
+  background: #f4f4f4;
+}
 
-p.message-#{$alertClass} {
-  color: red;
+.accordion__copy {
+  display: none;
+  padding: 1rem 1.5rem 2rem 1.5rem;
+  color: gray;
+  line-height: 1.6;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.accordion__copy--open {
+  display: block;
+}`}
+  codeSnippet={`.accordion {
+  max-width: 600px;
+  margin: 4rem auto;
+  width: 90%;
+  font-family: "Raleway", sans-serif;
+  background: #f4f4f4;
+
+  &__copy {
+    display: none;
+    padding: 1rem 1.5rem 2rem 1.5rem;
+    color: gray;
+    line-height: 1.6;
+    font-size: 14px;
+    font-weight: 500;
+
+    &--open {
+      display: block;
+    }
+  }
 }`}>
-  <p className="message-error">I'm an error message.</p>
+  <div class="accordion">
+    <h5>NOT PICTURED: .accordion__copy (without --open modifier)</h5>
+    <div className="accordion accordion__copy">
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente commodi maxime nam voluptatem! Iste quia molestiae nemo doloribus dolorem ducimus, ipsa, ullam voluptatem beatae soluta minima quibusdam repudiandae magnam consequuntur.</p>
+    </div>
+    <div className="accordion accordion__copy--open">
+      <p>.accordion__copy--open</p>
+      <p><em>You can't see the .accordion__copy div</em></p>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat accusamus adipisci sint ab animi! Fuga, cumque voluptatibus in vero atque iusto at modi distinctio fugit doloremque dignissimos! Iure, quo reprehenderit.</p>
+    </div>
+  </div>
 </Example>
 
 {/* 4. Maps */}
@@ -100,7 +143,7 @@ compiledSnippet={`p[class^="message"] {
 }
 
 p[class$="error"] {
-  border-color: $color-error;
+  border-color: $color-danger;
 }
 
 p[class$="success"] {
@@ -113,7 +156,7 @@ codeSnippet={`p {
   }
 
    &[class$="error"] {
-    border-color: $color-error;
+    border-color: $color-danger;
   }
 
   &[class$="success"] {
@@ -200,7 +243,7 @@ codeSnippet={`@mixin absoluteCenter($position) {
 
 
 <Example
-  title="Placeholders"
+  title="@extend with placeholders"
   lang="css"
   compiledSnippet={`.has-background-image {
   background-image: url('https://bit.ly/2PQ6GBs');

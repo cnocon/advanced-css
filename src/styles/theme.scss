@@ -21,15 +21,15 @@ h1, h2, h3, h4, h5, h6 {
 h1 {
   font-size: 8rem;
   font-weight: 800;
-  text-transform: uppercase;
+  text-transform: lowercase;
 }
 
 h2 {
   display: inline-block;
   font-size: 4.25rem;
   font-family: 'Montserrat', sans-serif;
-  text-transform: lowercase;
-  font-weight: 300;
+  text-transform: uppercase;
+  font-weight: 400;
   color: $onyx;
 }
 
@@ -74,18 +74,21 @@ main {
   padding: $default-padding;
 }
 
-section {
-  margin: 0 ;
-}
-
 .example {
-  margin-bottom: 12rem;
+  margin: 0 auto 12rem;
+
+  &__header,
+  &__preview {
+    max-width: 1600px;
+    margin: 0 auto;
+  }
 
   &:nth-of-type(odd) {
     background-color: rgba(237,237,237, .5);
     margin-left: -7.5%;
     margin-right: -7.5%;
-    padding: 1rem 7.5%;
+    padding: 1rem 5%;
+    width: 115%;
     padding-bottom: 4rem;
     padding-top: 4rem;
 
@@ -188,5 +191,26 @@ section {
 
   & ~ div {
     width: 50%;
+  }
+}
+
+.accordion {
+  max-width: 600px;
+  margin: 4rem auto;
+  width: 90%;
+  font-family: "Raleway", sans-serif;
+  background: #f4f4f4;
+
+  &__copy {
+    display: none;
+    padding: 1rem 1.5rem 2rem 1.5rem;
+    color: gray;
+    line-height: 1.6;
+    font-size: 14px;
+    font-weight: 500;
+
+    &--open {
+      display: block;
+    }
   }
 }
