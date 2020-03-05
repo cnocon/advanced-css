@@ -46,45 +46,9 @@ p.message-#{$alertClass} {
   <p className="message-error">I'm an error message.</p>
 </Example>
 
-
-{/* Map Data Type */}
-<Example
-title="Regular Expressions in Selectors"
-lang="css"
-compiledSnippet={`p[class^="message"] {
-  border-left: 10px solid $black;
-  padding-left: 1.5rem;
-}
-
-p[class$="error"] {
-  border-color: $color-error;
-}
-
-p[class$="success"] {
-  border-color: $color-success;
-}`}
-codeSnippet={`p {
-  &[class^="message"] {
-    border-left: 10px solid $black;
-    padding-left: 1.5rem;
-  }
-
-   &[class$="error"] {
-    border-color: $color-error;
-  }
-
-  &[class$="success"] {
-    border-color: $color-success;
-  }
-}`}>
-  <p className="message">I'm a generic message.</p>
-  <p className="message--error">I'm an error message.</p>
-  <p className="message--success">I'm a success message.</p>
-</Example>
-
 {/* 4. Maps */}
 <Example
-title="List Data Types"
+title="Map Data Types"
 lang="css"
 compiledSnippet={`.button--save {
   background-color: #d7263d;
@@ -159,50 +123,6 @@ codeSnippet={`p {
   <p className="message">I'm a generic message.</p>
   <p className="message--error">I'm an error message.</p>
   <p className="message--success">I'm a success message.</p>
-</Example>
-
-{/* 4. Maps */}
-<Example
-title="Map Data Types"
-lang="css"
-compiledSnippet={`.button--save {
-  background-color: #d7263d;
-}
-
-.button--save:hover {
-  background-color: #57ca67;
-  color: #21672a;
-}
-
-.button--cancel {
-  background-color: #D7263D;
-}
-
-.button--cancel:hover {
-  background-color: #e05063;
-  color: #801724;
-}
-
-/*...Etc...*/`}
-codeSnippet={`$buttonConfig: (
-  'save': $color-success,
-  'cancel': $color-danger,
-  'help': $light-blue
-);
-
-@each $pair in $buttonConfig {
-  .button--#{nth($pair, 1)} {
-    background-color: nth($pair, 2);
-
-    &:hover {
-      background-color: lighten(nth($pair, 2), 10%);
-      color: darken(nth($pair, 2), 20%);
-    }
-  }
-}`}>
-  <a className="button button--save">Save</a>
-  <a className="button button--cancel">Cancel</a>
-  <a className="button button--help">Help</a>
 </Example>
 
 
