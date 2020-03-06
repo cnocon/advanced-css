@@ -156,8 +156,6 @@ $colors: ('rose': $rose, 'yellow': $yellow, 'light-blue': $light-blue, 'aqua': $
 
 }
 
-
-
 @function calculate-rem($size) {
   $rem-size: $size / 16px;
   @return #{$rem-size}rem;
@@ -170,3 +168,146 @@ $colors: ('rose': $rose, 'yellow': $yellow, 'light-blue': $light-blue, 'aqua': $
 h3 {
   @include font-size(120px);
 }
+
+
+.alert-wrapper {
+  .alert {
+    --theme: #ccc;
+    --darkTheme: #777;
+    --icon: '';
+    background: var(--theme);
+    border: 1px solid var(--darkTheme);
+    /* other styles go here */
+
+    &:before {
+      background-image: var(--icon);
+    }
+  }
+
+  .alert-success {
+    --theme: #f0f9ef;
+    --darkTheme: #7ebb7a;
+    --icon: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/14179/success.svg);
+  }
+
+  .alert-error {
+    --theme: #fff5f5;
+    --darkTheme: #f78b8b;
+    --icon: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/14179/error.svg);
+  }
+
+  .alert-warning {
+    --theme: #fff9f0;
+    --darkTheme: #ffc848;
+    --icon: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/14179/warning.svg);
+
+    &::before {
+      white-space: pre;
+      font-family: monospace;
+      content:\0031;
+
+    }
+  }
+}
+
+// SASS ELEMENTS TO QUALIFY A SELECTOR ======================
+// https://css-tricks.com/snippets/sass/mixin-to-qualify-a-selector/
+// ==========================================================
+
+// Since the current way to qualify a class from within its ruleset is quite
+// ugly, here is a mixin providing a friendly API to do so.
+// @author Hugo Giraudel
+// @param {String} $element-selector - Element selector
+@mixin qualify($element-selector) {
+  @at-root #{$element-selector + &} {
+    @content;
+  }
+}
+
+// assuming this is nested like 4 levels in, and is getting overridden like crazy, you can qualify it to remove it from the nest
+.button {
+  @include qualify(a) {
+    contain: content;
+    // Specific styles for `a.button`
+  }
+}
+
+
+
+
+//====================================================
+%post-skeletor{
+  font:{ size: 12; weight: 700;}
+  box-sizing: border-box;
+  padding: 5px;
+  margin: 10px;
+  border: 1px solid whitesmoke;
+}
+
+.post-class {
+  font:{ size: 12; weight: 700;}
+  box-sizing: border-box;
+  padding: 5px;
+  margin: 10px;
+  border: 1px solid whitesmoke;
+}
+
+.post1--extends__placeholder {
+  @extend %post-skeletor;
+  background: yellow;
+}
+
+.post1--extends_class{
+  @extend .post-class;
+  background: yellow;
+}
+
+
+//https://css-irl.info/7-uses-for-css-custom-properties/
+:root {
+  --noOfColumns: 8;
+}
+
+@media (min-width: 60em) {
+  :root {
+    --noOfColumns: 12;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(var(--noOfColumns), 1fr);
+}
+
+
+// $weights: (
+//   default: (thin: 300, normal: 400, bold: 600, black: 700, extrablack: 800),
+//   display: (thin: 300, normal: 400, semibold: 500, bold: 600, black: 700, extrablack: 800),
+//   mono: (normal: 400, black: 700),
+//   default-italic: (thin: 300, normal: 400, bold: 600, black: 700, extrablack: 800),
+//   display-italic: (normal: 400, semibold: 500, bold: 600, black: 700, extrablack: 800)
+// );
+
+// $site-fonts: (default: "'Open Sans', sans-serif", display: "'Montserrat', sans-serif", mono: "'Inconsolata', monospace");
+
+
+// @each $type, $font in $site-fonts {
+//   $w = map.get($weights, $type);
+//   $i = map.get($weights, #{$type}-italic);
+
+//   .font-#{$type} {
+//     font-family: #{$font};
+//     @each $pair, $weight in $w {
+//       if
+//       &-#{nth($pair, 1)} {
+//         font-weight: nth($pair, 2);
+
+//         @each $ipair, $iweight in $i {
+//           &-#{nth($ipair, 1)} {
+//             font-weight: nth($ipair, 2);
+//           }
+//         }
+//       }
+//     }
+//   }
+// }

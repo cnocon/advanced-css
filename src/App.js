@@ -2,11 +2,16 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.scss';
 import Example from './Example'
+import * as Styles from './Styles'
+import Alert from './Alert';
 
 const App = () => {
   return (
     <main>
-      <header><h1>Advanced CSS</h1></header>
+      <header>
+        <h1>Advanced <span>CSS/SCSS/SASS</span></h1>
+      </header>
+<Alert />
 {/* 1. Prefixing parent selector references */}
 <Example
   title="The Parent Selector"
@@ -76,7 +81,7 @@ const App = () => {
     }
   }
 }`}>
-  <div class="accordion">
+  <div className="accordion">
     <h5>NOT PICTURED: .accordion__copy (without --open modifier)</h5>
     <div className="accordion accordion__copy">
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente commodi maxime nam voluptatem! Iste quia molestiae nemo doloribus dolorem ducimus, ipsa, ullam voluptatem beatae soluta minima quibusdam repudiandae magnam consequuntur.</p>
