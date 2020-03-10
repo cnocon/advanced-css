@@ -1,9 +1,9 @@
 import React from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.scss';
 import Example from './Example'
-import * as Styles from './Styles'
-import Alert from './Alert';
+// import * as Styles from './Styles'
+// import Alert from './Alert';
 
 const App = () => {
   return (
@@ -11,36 +11,30 @@ const App = () => {
       {/* <header>
         <h1>Advanced <span>CSS/SCSS/SASS</span></h1>
       </header> */}
-{/* <Alert /> */}]
+{/* <Alert /> */}
 
 <Example
-  title="Mixins"
+  title="Functions"
   lang="css"
-  compiledSnippet={`.text {
-  font-family: Montserrat, sans-serif;
-  font-size: 1rem;
-  line-height: 1.5;
-  font-weight: 700;
+  compiledSnippet={`.page-title {
+  font-size: 3.75rem;
 }`}
-  codeSnippet={`@mixin text($size, $lineHeight, $weight, $family) {
-  font-family: $family;
-  font-size: $size;
-  line-height: $lineHeight;
-  font-weight: $weight;
+  codeSnippet={`/* This should be your base font size */
+$rem-base: 16 !default;
+
+@function strip-unit ($num) {
+  @return $num / ($num * 0 + 1);
 }
 
-.text {
-  @include text(1rem, 1.5, 700, $montserrat)
+@function to-rem ($pixels) {
+  @return strip-unit($pixels) / $rem-base * 1rem;
+}
+
+.page-title {
+  font-size: to-rem(60px);
 }`}>
-  <p class="text">I'm a paragraph using the text mixin.</p>
+  <h1 className="page-title">I'm a page title</h1>
 </Example>
-@mixin min-width($threshold) {
-  // We're calling another function (scut-rem) to convert pixels to rem units.
-  // We'll cover that in the next section.
-  @media screen and (min-width: scut-rem($threshold)) {
-    @content;
-  }
-}
 
 <Example
   title="Mixins"
@@ -61,7 +55,7 @@ const App = () => {
 .text {
   @include text(1rem, 1.5, 700, $montserrat)
 }`}>
-  <p class="text">I'm a paragraph using the text mixin.</p>
+  <p className="text">I'm a paragraph using the text mixin.</p>
 </Example>
 
 <Example
@@ -96,7 +90,7 @@ const App = () => {
 .text {
   @include text(1rem, 2.5, null, null)
 }`}>
-  <p class="text">I'm a paragraph using the text mixin and passing null args.<br/>I break onto multiple lines.</p>
+  <p className="text">I'm a paragraph using the text mixin and passing null args.<br/>I break onto multiple lines.</p>
 </Example>
 
 
@@ -110,13 +104,13 @@ const App = () => {
 }`}
   codeSnippet={`.dark-bg {
   background-color: #222;
+}
 
-  p {
-    color: #222;
+p {
+  color: #222;
 
-    .dark-bg & {
-      color: #fff;
-    }
+  .dark-bg & {
+    color: #fff;
   }
 }`}>
   <p>I'm a paragraph.</p>
@@ -221,9 +215,9 @@ codeSnippet={`$buttonConfig: (
     }
   }
 }`}>
-  <a className="button button--save">Save</a>
-  <a className="button button--cancel">Cancel</a>
-  <a className="button button--help">Help</a>
+  <a href="/" className="button button--save">Save</a>
+  <a href="/" className="button button--cancel">Cancel</a>
+  <a href="/" className="button button--help">Help</a>
 </Example>
 
 {/* 3. Regexp Selectors */}

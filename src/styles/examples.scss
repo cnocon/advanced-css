@@ -61,7 +61,9 @@ $buttonConfig: (
 );
 
 @each $type, $color in $buttonConfig {
+
   .button--#{$type} {
+    @debug "$type: #{$type}";
     background-color: $color;
 
     &:hover {
@@ -316,34 +318,18 @@ h3 {
   @include text(1rem, 2.5, null, null)
 }
 
-// $weights: (
-//   default: (thin: 300, normal: 400, bold: 600, black: 700, extrablack: 800),
-//   display: (thin: 300, normal: 400, semibold: 500, bold: 600, black: 700, extrablack: 800),
-//   mono: (normal: 400, black: 700),
-//   default-italic: (thin: 300, normal: 400, bold: 600, black: 700, extrablack: 800),
-//   display-italic: (normal: 400, semibold: 500, bold: 600, black: 700, extrablack: 800)
-// );
 
-// $site-fonts: (default: "'Open Sans', sans-serif", display: "'Montserrat', sans-serif", mono: "'Inconsolata', monospace");
+/* This should be your base font size */
+$rem-base: 16 !default;
 
+@function strip-unit ($num) {
+  @return $num / ($num * 0 + 1);
+}
 
-// @each $type, $font in $site-fonts {
-//   $w = map.get($weights, $type);
-//   $i = map.get($weights, #{$type}-italic);
+@function to-rem ($pixels) {
+  @return strip-unit($pixels) / $rem-base * 1rem;
+}
 
-//   .font-#{$type} {
-//     font-family: #{$font};
-//     @each $pair, $weight in $w {
-//       if
-//       &-#{nth($pair, 1)} {
-//         font-weight: nth($pair, 2);
-
-//         @each $ipair, $iweight in $i {
-//           &-#{nth($ipair, 1)} {
-//             font-weight: nth($ipair, 2);
-//           }
-//         }
-//       }
-//     }
-//   }
-// }
+.page-title {
+  font-size: to-rem(60px);
+}
