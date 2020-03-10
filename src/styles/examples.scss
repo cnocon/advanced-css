@@ -60,13 +60,13 @@ $buttonConfig: (
   'help': $light-blue
 );
 
-@each $pair in $buttonConfig {
-  .button--#{nth($pair, 1)} {
-    background-color: nth($pair, 2);
+@each $type, $color in $buttonConfig {
+  .button--#{$type} {
+    background-color: $color;
 
     &:hover {
-      background-color: lighten(nth($pair, 2), 10%);
-      color: darken(nth($pair, 2), 20%);
+      background-color: lighten($color, 10%);
+      color: darken($color, 20%);
     }
   }
 }
@@ -279,6 +279,42 @@ h3 {
   grid-template-columns: repeat(var(--noOfColumns), 1fr);
 }
 
+// @mixin text($size, $lineHeight, $weight, $family, $color) {
+//   font-family: $family;
+//   font-size: $size;
+//   line-height: $lineHeight;
+//   font-weight: $weight;
+//   color: $color;
+// }
+
+// p {
+//   @include text(1rem, 1.5, 700, $montserrat, inherit)
+// }
+@mixin text($size, $lineHeight, $weight, $family) {
+  /* If the $size argument is not empty, then output the argument */
+  @if $size != null {
+    font-size: $size;
+  }
+
+  // If the $lineHeight argument is not empty, then output the argument
+  @if $lineHeight != null {
+    line-height: $lineHeight;
+  }
+
+  // If the $weight argument is not empty, then output the argument
+  @if $weight != null {
+    font-weight: $weight;
+  }
+
+  // If the $family argument is not empty, then output the argument
+  @if $family != null {
+    font-family: $family;
+  }
+}
+
+.text {
+  @include text(1rem, 2.5, null, null)
+}
 
 // $weights: (
 //   default: (thin: 300, normal: 400, bold: 600, black: 700, extrablack: 800),

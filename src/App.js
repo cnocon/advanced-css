@@ -8,10 +8,98 @@ import Alert from './Alert';
 const App = () => {
   return (
     <main>
-      <header>
+      {/* <header>
         <h1>Advanced <span>CSS/SCSS/SASS</span></h1>
-      </header>
-<Alert />
+      </header> */}
+{/* <Alert /> */}]
+
+<Example
+  title="Mixins"
+  lang="css"
+  compiledSnippet={`.text {
+  font-family: Montserrat, sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  font-weight: 700;
+}`}
+  codeSnippet={`@mixin text($size, $lineHeight, $weight, $family) {
+  font-family: $family;
+  font-size: $size;
+  line-height: $lineHeight;
+  font-weight: $weight;
+}
+
+.text {
+  @include text(1rem, 1.5, 700, $montserrat)
+}`}>
+  <p class="text">I'm a paragraph using the text mixin.</p>
+</Example>
+@mixin min-width($threshold) {
+  // We're calling another function (scut-rem) to convert pixels to rem units.
+  // We'll cover that in the next section.
+  @media screen and (min-width: scut-rem($threshold)) {
+    @content;
+  }
+}
+
+<Example
+  title="Mixins"
+  lang="css"
+  compiledSnippet={`.text {
+  font-family: Montserrat, sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  font-weight: 700;
+}`}
+  codeSnippet={`@mixin text($size, $lineHeight, $weight, $family) {
+  font-family: $family;
+  font-size: $size;
+  line-height: $lineHeight;
+  font-weight: $weight;
+}
+
+.text {
+  @include text(1rem, 1.5, 700, $montserrat)
+}`}>
+  <p class="text">I'm a paragraph using the text mixin.</p>
+</Example>
+
+<Example
+  title="If Statements"
+  lang="css"
+  compiledSnippet={`.text {
+  font-size: 1rem;
+  line-height: 2.5;
+}`}
+  codeSnippet={`@mixin text($size, $lineHeight, $weight, $family) {
+  /* If the $size argument is not empty, then output the argument */
+  @if $size != null {
+    font-size: $size;
+  }
+
+  /* If the $lineHeight argument is not empty, then output the argument */
+  @if $lineHeight != null {
+    line-height: $lineHeight;
+  }
+
+  /* If the $weight argument is not empty, then output the argument */
+  @if $weight != null {
+    font-weight: $weight;
+  }
+
+  /* If the $family argument is not empty, then output the argument */
+  @if $family != null {
+    font-family: $family;
+  }
+}
+
+.text {
+  @include text(1rem, 2.5, null, null)
+}`}>
+  <p class="text">I'm a paragraph using the text mixin and passing null args.<br/>I break onto multiple lines.</p>
+</Example>
+
+
 {/* 1. Prefixing parent selector references */}
 <Example
   title="The Parent Selector"
@@ -123,13 +211,13 @@ codeSnippet={`$buttonConfig: (
   'help': $light-blue
 );
 
-@each $pair in $buttonConfig {
-  .button--#{nth($pair, 1)} {
-    background-color: nth($pair, 2);
+@each $type, $color in $buttonConfig {
+  .button--#{$type} {
+    background-color: $color;
 
     &:hover {
-      background-color: lighten(nth($pair, 2), 10%);
-      color: darken(nth($pair, 2), 20%);
+      background-color: lighten($color, 10%);
+      color: darken($color, 20%);
     }
   }
 }`}>
