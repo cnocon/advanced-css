@@ -180,33 +180,33 @@ p {
 <Example
 title="Map Data Types"
 lang="css"
-compiledSnippet={`.button--save {
-  background-color: #d7263d;
+compiledSnippet={`.button--success {
+  background-color: rgba(57, 181, 74, 0.5);
 }
 
-.button--save:hover {
-  background-color: #57ca67;
-  color: #21672a;
+.button--success:hover {
+  background-color: rgba(87, 202, 103, 0.5);
+  color: rgba(33, 103, 42, 0.5);
 }
 
-.button--cancel {
-  background-color: #D7263D;
+.button--danger {
+  background-color: rgba(255, 0, 0, 0.75);
 }
 
-.button--cancel:hover {
-  background-color: #e05063;
-  color: #801724;
+.button--danger:hover {
+  background-color: rgba(255, 51, 51, 0.75);
+  color: rgba(153, 0, 0, 0.75);
 }
 
 /*...Etc...*/`}
 codeSnippet={`$buttonConfig: (
-  'save': $color-success,
-  'cancel': $color-danger,
-  'help': $light-blue
+  'success': $color-success,
+  'danger': $color-danger,
+  'info': $light-blue
 );
 
-@each $type, $color in $buttonConfig {
-  .button--#{$type} {
+@each $state, $color in $buttonConfig {
+  .button--#{$state} {
     background-color: $color;
 
     &:hover {
@@ -215,9 +215,9 @@ codeSnippet={`$buttonConfig: (
     }
   }
 }`}>
-  <a href="/" className="button button--save">Save</a>
-  <a href="/" className="button button--cancel">Cancel</a>
-  <a href="/" className="button button--help">Help</a>
+  <a className="button button--success">Save</a>
+  <a className="button button--danger">Delete</a>
+  <a className="button button--info">Help</a>
 </Example>
 
 {/* 3. Regexp Selectors */}
@@ -333,7 +333,11 @@ codeSnippet={`@mixin absoluteCenter($position) {
   title="@extend with placeholders"
   lang="css"
   compiledSnippet={`.has-background-image {
+  padding: 10rem;
   background-image: url('https://bit.ly/2PQ6GBs');
+}
+
+.has-background-image {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -345,8 +349,9 @@ codeSnippet={`@mixin absoluteCenter($position) {
 }
 
 .has-background-image {
-  background-image: url('https://bit.ly/2PQ6GBs');
   @extend %side-by-side-background;
+  padding: 10rem;
+  background-image: url('https://bit.ly/2PQ6GBs');
 }`}>
 
   <div className="has-background-image">

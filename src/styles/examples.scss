@@ -55,15 +55,13 @@ p {
 }
 
 $buttonConfig: (
-  'save': $color-success,
-  'cancel': $color-danger,
-  'help': $light-blue
+  'success': $color-success,
+  'danger': $color-danger,
+  'info': $light-blue
 );
 
-@each $type, $color in $buttonConfig {
-
-  .button--#{$type} {
-    @debug "$type: #{$type}";
+@each $state, $color in $buttonConfig {
+  .button--#{$state} {
     background-color: $color;
 
     &:hover {
@@ -141,18 +139,15 @@ $colors: ('rose': $rose, 'yellow': $yellow, 'light-blue': $light-blue, 'aqua': $
 }
 
 .has-background-image {
-  background-image: url('https://bit.ly/2PQ6GBs');
   @extend %side-by-side-background;
-}
-
-.has-background-image {
-  min-height: 300px;
+  padding: 10rem;
+  background-image: url('https://bit.ly/2PQ6GBs');
 
   p {
-    padding: 3rem;
+    box-sizing: border-box;
+    padding: 7.5rem;
     width: 90%;
-    margin: auto;
-    transform: translate(0, 30%);
+    margin: 0 auto;
     background-color: rgba($white, .75);
   }
 
