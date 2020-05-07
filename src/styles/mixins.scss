@@ -2,33 +2,33 @@ $gutters: ("sm": 1rem, "md": 3rem, "lg": 6rem, "xl": 8rem );
 
 @each $gutter in $gutters {
   .margin-x-#{nth($gutter, 1)} {
-    margin-left: nth($gutter, 2) !important;
-    margin-right: nth($gutter, 2) !important;
+    margin-left: nth($gutter, 2);
+    margin-right: nth($gutter, 2);
   }
 
   .margin-y-#{nth($gutter, 1)} {
-    margin-top: nth($gutter, 2) !important;
-    margin-bottom: nth($gutter, 2) !important;
+    margin-top: nth($gutter, 2);
+    margin-bottom: nth($gutter, 2);
   }
 
   .margin-top-#{nth($gutter, 1)} {
-    margin-top: nth($gutter, 2) !important;
+    margin-top: nth($gutter, 2);
   }
 
   .margin-top-neg-#{nth($gutter, 1)} {
-    margin-top: -#{nth($gutter, 2)} !important;
+    margin-top: -#{nth($gutter, 2)};
   }
 
   .margin-bottom-#{nth($gutter, 1)} {
-    margin-bottom: nth($gutter, 2) !important;
+    margin-bottom: nth($gutter, 2);
   }
 
   .margin-left-#{nth($gutter, 1)} {
-    margin-left: nth($gutter, 2) !important;
+    margin-left: nth($gutter, 2);
   }
 
   .margin-right-#{nth($gutter, 1)} {
-    margin-right: nth($gutter, 2) !important;
+    margin-right: nth($gutter, 2);
   }
 }
 
@@ -46,9 +46,11 @@ $breakpoints: (
 @mixin mediaq($width, $type: min) {
   @if map_has_key($breakpoints, $width) {
     $width: map_get($breakpoints, $width);
+
     @if $type == max {
       $width: $width - 1px;
     }
+
     @media only screen and (#{$type}-width: $width) {
       @content;
     }
@@ -58,6 +60,7 @@ $breakpoints: (
 header {
   padding: 2rem;
   font-size: 1.8rem;
+
   @include mediaq('tablet-wide') {
     padding-top: 4rem;
     font-size: 2.4rem;
